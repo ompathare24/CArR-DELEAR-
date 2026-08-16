@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HP MOTORS INDIA — Premium Car Dealers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page-glow"></div>
+
+<header class="nav">
+  <a class="brand" href="#home">
+    <img src="hp-motors-logo.png" alt="HP Motors India" class="hp-logo">
+    <span>HP MOTORS INDIA</span>
+  </a>
+  <nav>
+    <a href="#brands">BRANDS</a>
+    <a href="#cars">CARS</a>
+    <a href="#compare">COMPARE</a>
+    <a href="#valuation">OLD CAR VALUE</a>
+    <a href="#contact">CONTACT</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-copy">
+    <div class="hero-logo-lockup">
+      <img src="hp-motors-logo.png" alt="HP Motors India Premium Car Dealers">
+    </div>
+    <div class="eyebrow">HP MOTORS INDIA • PREMIUM CAR DEALERS</div>
+    <h1>Find it.<br><em>Price it. Drive it.</em></h1>
+    <p>New cars • Used cars • Exchange • On-road budget • Old-car valuation • Brand-wise comparison</p>
+    <div class="hero-actions">
+      <a href="#brands" class="btn primary">EXPLORE BRANDS ↗</a>
+      <a href="#compare" class="btn ghost">COMPARE MY CAR</a>
+    </div>
+  </div>
+
+  <!-- THE ONLY CIRCLE: major car-brand logos -->
+  <div class="brand-orbit-wrap" id="brands">
+    <div class="brand-orbit-glow"></div>
+    <div class="brand-orbit-ring"></div>
+    <div class="brand-orbit" id="brandOrbit"></div>
+    <div class="brand-orbit-center">
+      <span>HP MOTORS INDIA</span>
+      <strong>INDIA'S<br>CAR BRANDS</strong>
+      <small>POINT • HOVER • CLICK</small>
+    </div>
+    <div class="brand-hover" id="brandHover">
+      <img id="brandHoverImg" src="" alt="">
+      <div><span id="brandHoverName">BRAND</span><small>CLICK TO OPEN MODELS →</small></div>
+    </div>
+  </div>
+
+  <div class="hero-note">BRAND LOGOS ARE INTERACTIVE • FINAL VEHICLE PRICES VARY BY CITY, VARIANT, RTO, INSURANCE & DEALER OFFER</div>
+</section>
+
+<section class="service-strip">
+  <div><b>01</b><strong>NEW CAR BUDGET</strong><span>Estimate a city-based on-road planning budget.</span></div>
+  <div><b>02</b><strong>OLD CAR VALUE</strong><span>Get an indicative exchange/resale starting range.</span></div>
+  <div><b>03</b><strong>UPGRADE GAP</strong><span>See how much you may need after exchange.</span></div>
+  <div><b>04</b><strong>BRAND-WISE MODELS</strong><span>Open any logo to explore that manufacturer's cars.</span></div>
+</section>
+
+<section class="cars-section" id="cars">
+  <div class="section-head">
+    <div><span>FEATURED INDIAN MARKET</span><h2>More cars.<br><em>More choices.</em></h2></div>
+    <p>Popular old favourites, current models and newer EV choices. Open a brand logo above for the complete brand-wise catalogue.</p>
+  </div>
+  <div class="car-grid" id="carGrid"></div>
+</section>
+
+<section class="compare-section" id="compare">
+  <div class="section-head centered">
+    <span>SMART UPGRADE CALCULATOR</span>
+    <h2>Your old car → <em>your next car.</em></h2>
+    <p>Choose your current car, ownership details and a new car. HP Motors gives an indicative planning estimate.</p>
+  </div>
+
+  <div class="calculator">
+    <div class="form-panel">
+      <div class="field"><label>YOUR CURRENT CAR</label><select id="oldCar"></select></div>
+      <div class="two">
+        <div class="field"><label>MODEL YEAR</label><input id="oldYear" type="number" min="2005" max="2026" value="2019"></div>
+        <div class="field"><label>KM DRIVEN</label><input id="oldKm" type="number" min="0" value="55000"></div>
+      </div>
+      <div class="field"><label>CONDITION</label>
+        <select id="condition"><option value="1">Excellent</option><option value=".92" selected>Good</option><option value=".78">Average</option><option value=".62">Needs work</option></select>
+      </div>
+      <div class="field"><label>NEW CAR</label><select id="newCar"></select></div>
+      <div class="field"><label>CITY / RTO AREA</label>
+        <select id="city">
+          <option value="1.10">Pune</option><option value="1.11">Mumbai</option><option value="1.08">Delhi NCR</option>
+          <option value="1.09">Bengaluru</option><option value="1.09">Hyderabad</option><option value="1.09">Chennai</option>
+          <option value="1.08">Ahmedabad</option><option value="1.10">Other Maharashtra</option>
+        </select>
+      </div>
+      <button class="btn primary wide" id="calculate">CALCULATE MY UPGRADE ↗</button>
+    </div>
+
+    <div class="result-panel">
+      <div class="result-car"><img id="resultImg" src="" alt=""><div><span>RECOMMENDED NEW CAR</span><strong id="resultName">—</strong></div></div>
+      <div class="numbers">
+        <div><span>Estimated old-car value</span><strong id="oldValue">₹—</strong></div>
+        <div><span>Estimated on-road budget</span><strong id="roadValue">₹—</strong></div>
+        <div class="highlight"><span>Indicative upgrade amount</span><strong id="gapValue">₹—</strong></div>
+      </div>
+      <div class="result-note">Planning estimate only. Actual exchange/resale value requires vehicle inspection; actual on-road price depends on variant, RTO, insurance, taxes and dealer offers.</div>
+    </div>
+  </div>
+</section>
+
+<section class="valuation" id="valuation">
+  <div class="valuation-copy">
+    <span>SELL / EXCHANGE YOUR OLD CAR</span>
+    <h2>Know your car's<br><em>starting value.</em></h2>
+    <p>Age, kilometres, condition, service history and market demand affect used-car value. Use our estimate as a starting point before requesting a dealer inspection.</p>
+    <a class="btn ghost" href="#compare">VALUE MY CAR ↗</a>
+  </div>
+  <div class="valuation-points">
+    <div><b>01</b><strong>AGE</strong><span>Depreciation is estimated from model year.</span></div>
+    <div><b>02</b><strong>RUNNING</strong><span>Higher kilometres can reduce the indicative range.</span></div>
+    <div><b>03</b><strong>CONDITION</strong><span>Excellent, good, average and needs-work adjustments.</span></div>
+    <div><b>04</b><strong>MARKET</strong><span>Demand for popular models can support resale value.</span></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <span>HP MOTORS INDIA • PREMIUM CAR DEALERS</span>
+  <h2>Ready for your<br><em>next car?</em></h2>
+  <p>New • Used • Exchange • Compare • On-road Budget</p>
+  <div class="contact-details">
+    <a href="tel:9890890760">📞 9890890760</a>
+    <a href="mailto:hpmotorsindia24@gmail.com">✉ hpmotorsindia24@gmail.com</a>
+  </div>
+  <a class="btn primary" href="mailto:hpmotorsindia24@gmail.com">REQUEST A QUOTE ↗</a>
+</section>
+</main>
+
+<footer><span>© 2026 HP MOTORS INDIA</span><span>New • Used • Exchange • Compare</span></footer>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal-bg"></div>
+  <button id="closeModal">×</button>
+  <div class="modal-box">
+    <img id="modalImg" src="" alt="">
+    <div class="modal-data"><span id="modalBrand"></span><h3 id="modalName"></h3><strong id="modalPrice"></strong><p id="modalSpecs"></p></div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
