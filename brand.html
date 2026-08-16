@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HP Motors India — Brand Cars</title><link rel="stylesheet" href="style.css"></head>
+<body class="brand-page">
+<header class="nav"><a class="brand" href="index.html"><img src="hp-motors-logo.png" alt="HP Motors India" class="hp-logo"><span>HP MOTORS INDIA</span></a>
+<nav><a href="index.html#brands">ALL BRANDS</a><a href="index.html#compare">COMPARE</a><a href="index.html#contact">CONTACT</a></nav></header>
+<main>
+<section class="brand-hero">
+  <div class="eyebrow">HP MOTORS INDIA • BRAND CATALOGUE</div>
+  <div class="brand-hero-logo" id="brandLogo"></div>
+  <h1 id="brandTitle">BRAND</h1>
+  <p id="brandIntro">Explore the brand's full HP Motors catalogue: model photo, indicative budget and key specifications for quick customer comparison.</p>
+  <div class="brand-actions"><a class="btn ghost" href="index.html#brands">← ALL BRANDS</a><a class="btn primary" href="index.html#compare">COMPARE A CAR ↗</a></div>
+</section>
+<section class="brand-cars">
+  <div class="brand-filter"><div><span id="brandCount"></span><small> models in HP Motors catalogue</small></div>
+    <select id="typeFilter"><option value="ALL">All types</option><option>Hatchback</option><option>Sedan</option><option>SUV</option><option>Compact SUV</option><option>Micro SUV</option><option>MPV</option><option>Electric SUV</option><option>Electric Hatchback</option><option>Electric Crossover</option><option>SUV Coupe</option><option>Pickup</option></select>
+  </div>
+  <div class="brand-detail-grid" id="brandGrid"></div>
+</section>
+<section class="contact"><span>HP MOTORS INDIA</span><h2>Need help choosing<br><em>your next car?</em></h2>
+<div class="contact-details"><a href="tel:9890890760">📞 9890890760</a><a href="mailto:hpmotorsindia24@gmail.com">✉ hpmotorsindia24@gmail.com</a></div>
+<a class="btn primary" href="mailto:hpmotorsindia24@gmail.com">REQUEST A QUOTE ↗</a></section>
+</main>
+<footer><span>© 2026 HP MOTORS INDIA</span><span>New • Used • Exchange • Compare</span></footer>
+<div class="modal" id="modal" aria-hidden="true"><div class="modal-bg"></div><button id="closeModal">×</button><div class="modal-box"><img id="modalImg" src="" alt=""><div class="modal-data"><span id="modalBrand"></span><h3 id="modalName"></h3><strong id="modalPrice"></strong><p id="modalSpecs"></p></div></div></div>
+<script src="script.js"></script>
+<script>
+const params=new URLSearchParams(location.search),key=params.get("brand")||"hyundai";
+const brand=brands.find(x=>x.key===key)||brands[0];
+const models=brand.ids.map(getCar).filter(Boolean);
+document.title=`${brand.name} Cars — HP Motors India`;
+document.querySelector("#brandTitle").textContent=brand.name;
+document.querySelector("#brandIntro").textContent=`Explore ${models.length} featured ${brand.name} models with photos, type, fuel, transmission, engine, seats, drive layout and indicative starting budget.`;
+document.querySelector("#brandLogo").innerHTML=`<img src="${brand.logo}" alt="${brand.name} logo">`;
+const grid=document.querySelector("#brandGrid"),count=document.querySelector("#brandCount"),filter=document.querySelector("#typeFilter");
+function renderBrand(){
+  const list=filter.value==="ALL"?models:models.filter(c=>c.type===filter.value);
+  count.textContent=list.length;
+  grid.innerHTML="";
+  list.forEach(c=>{
+    const el=document.createElement("article");el.className="brand-model-card";
+    el.innerHTML=`
+      <div class="brand-model-photo"><img src="${c.img}" alt="${c.brand} ${c.name}" loading="lazy"><span class="tag">${c.type.toUpperCase()}</span></div>
+      <div class="brand-model-info">
+        <div class="brandline">${c.brand}</div><h3>${c.name}</h3><div class="model-price">From ${moneyLakh(c.price)}*</div>
+        <div class="spec-grid">
+          <div><b>YEAR</b><span>${c.year}</span></div><div><b>FUEL</b><span>${c.fuel}</span></div>
+          <div><b>ENGINE</b><span>${c.engine}</span></div><div><b>GEARBOX</b><span>${c.trans}</span></div>
+          <div><b>SEATS</b><span>${c.seats}</span></div><div><b>DRIVE</b><span>${c.drive}</span></div>
+        </div>
+        <div class="feature-list">${c.features.map(x=>`<span>${x}</span>`).join("")}</div>
+        <button class="btn ghost model-view" data-open="${c.id}">VIEW FULL DETAILS ↗</button>
+      </div>`;
+    grid.appendChild(el);
+  });
+}
+filter.addEventListener("change",renderBrand);renderBrand();
+
+const modal=document.querySelector("#modal");
+function openModel(id){
+ const c=getCar(id);
+ document.querySelector("#modalImg").src=c.img;
+ document.querySelector("#modalBrand").textContent=c.brand;
+ document.querySelector("#modalName").textContent=c.name;
+ document.querySelector("#modalPrice").textContent=moneyLakh(c.price)+"*";
+ document.querySelector("#modalSpecs").textContent=`${c.year} • ${c.type} • ${c.fuel} • ${c.trans} • ${c.engine} • ${c.seats} seats • ${c.drive}. Key features: ${c.features.join(" • ")}`;
+ modal.classList.add("open");document.body.style.overflow="hidden";
+}
+document.querySelector("#brandGrid").addEventListener("click",e=>{const b=e.target.closest("[data-open]");if(b)openModel(b.dataset.open)});
+document.querySelector("#closeModal").onclick=()=>{modal.classList.remove("open");document.body.style.overflow=""};
+modal.addEventListener("click",e=>{if(e.target===modal){modal.classList.remove("open");document.body.style.overflow=""}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){modal.classList.remove("open");document.body.style.overflow=""}});
+</script>
+</body></html>
